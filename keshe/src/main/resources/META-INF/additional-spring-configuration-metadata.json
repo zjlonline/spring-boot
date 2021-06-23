@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "pagehelper.helperDialect",
+      "type": "java.lang.String",
+      "description": "Description for pagehelper.helperDialect."
+    },
+    {
+      "name": "pagehelper.helperDialect",
+      "type": "java.lang.String",
+      "description": "Description for pagehelper.helperDialect."
+    }
+  ] }

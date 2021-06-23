@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.sise.repository.ApartMapper">
+    <select id="aparts" resultMap="findaparts">
+select a.sushe,a.room,max,a.school,num from apartinfo a JOIN (select count(room) as num,sushe ,school,room from student GROUP BY room,sushe ) s on
+a.room=s.room and a.sushe=s.sushe GROUP BY room,sushe
+   </select>
+<resultMap id="findaparts" type="apart">
+    <result property="sushe" column="sushe"></result>
+    <result property="room" column="room"></result>
+    <result property="max" column="max"></result>
+    <result property="school" column="school"></result>
+    <result property="num" column="num"></result>
+</resultMap>
+    <select id="find" resultType="student">
+        select * from student where sushe=#{sushe} and room=#{room}
+    </select>
+    <select id="select" resultType="apart">
+        select a.sushe,a.room,max,a.school,num from apartinfo a JOIN
+        (select count(room) as num,sushe ,school,room from student GROUP BY room,sushe ) s on
+a.room=s.room and a.sushe=s.sushe where a.sushe like '%${dormitory}%' or a.room like '%${dormitory}%' GROUP BY room,sushe
+    </select>
+</mapper>
